@@ -1,0 +1,28 @@
+extends layout
+
+block content 
+
+	div.details
+		img.detailImage(src=plantfamily.imageurl alt=(plantfamily.name + " picture"))
+		div.detailsTextArea
+			h1 #{plantfamily.name}
+			p.detailText #{plantfamily.description}
+			if plantfamily_plants.length==0
+				h4 There are no plants connected to this family.
+	
+	if plantfamily_plants.length!==0
+		h4 Plants in this family:
+		div.plantfamilyDisplayList
+			each plant in plantfamily_plants
+				a#plantbox(href=plant.url)
+					img(src=plant.imageurl alt=plant.name + " picture")
+					p #{plant.name}
+	div.buttons
+		a.addNewButton(href=plantfamily.url + "/update") Update family
+		if plantfamily_plants.length==0
+						
+			a.deleteButton(href=plantfamily.url+"/delete") Delete Plant Family
+		
+	
+	
+	

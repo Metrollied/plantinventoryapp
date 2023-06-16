@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+
+	
+	div.details
+		img.detailImage(src=plant.imageurl)
+		div.detailsTextArea
+			h1 #{plant.name}
+			p.detailText #{plant.description}
+			a(href=plant.family.url) Plant Family: #{plant.family.name}
+			if plant.amount !== 0
+				p Number in stock: #{plant.amount}
+			else 
+				p This plant is currently out of stock.
+	
+	div.buttons
+		a.addNewButton(href=plant.url+"/update") Update Plant
+		a.deleteButton(href=plant.url+"/delete") Delete Plant
+	
+		

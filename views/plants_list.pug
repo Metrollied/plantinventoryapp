@@ -1,0 +1,15 @@
+extends layout 
+block content
+	h1=title
+
+	div#listArea
+	 
+		each plant in plants_list
+				a#plantbox(href=plant.url)
+					img(src=plant.imageurl alt=plant.name + " picture")
+					p #{plant.name}
+		
+		else
+			h1 There are no plants.
+	
+	a.addNewButton(href="/plants/create") Add New Plant

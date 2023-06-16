@@ -1,0 +1,23 @@
+extends layout 
+
+block content
+	h1=title
+	
+	form(method="POST" action="" enctype="multipart/form-data")
+		div.form-group
+			label(for="name") Name:
+			input#name.form-control(type="text" placeholder="Name of plant family" name="name" required=true value=(undefined===plantfamily ? "" : plantfamily.name))
+		div.form-group
+			label(for="description") Description:
+			textarea#description.form-control(type="textarea", placeholder="Description" name="description" required=true) #{undefined===plantfamily ? "" : plantfamily.description}
+		div.form-group
+			if plantfamily!==undefined
+				img(src=plantfamily.imageurl) 
+			label(for="image") 
+			input.upload(type="file" name="image" accept="image/*" required=(undefined==plantfamily ? true : false))
+		button.btn.btn-primary(type="submit") Submit
+
+	if errors 
+		ul 
+			for error in errors
+				li!= error.msg

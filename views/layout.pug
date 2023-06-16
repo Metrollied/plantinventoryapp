@@ -1,0 +1,23 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+	body
+		nav(class='header-nav')
+			a.iconArea(href="/")
+				img#icon(src="../../images/green-leaf-icon.svg")
+				p Plant Inventory
+			div.linksAreaParent Menu
+				div#linksArea
+					a.linkOne(href='/') Home
+					a(href='/plantfamilies') Plant Families
+					a(href='/plants') Plants
+					a(href='/plants/indoor') Indoor Plants
+			
+		div#page
+			div#footer
+				p © Oliver Crawford 2022
+			div.content
+				block content

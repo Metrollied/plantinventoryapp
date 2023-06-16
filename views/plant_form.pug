@@ -1,0 +1,43 @@
+extends layout 
+
+block content
+	h1=title
+
+	form(method="POST" action="" enctype="multipart/form-data")
+		div.form-group
+			label(for="name") Name:
+			input#name.form-control(type="text" placeholder="Name of plant species" name="name" required=true value=(undefined===plant ? "" : plant.name))
+		div.form-group
+			label(for="family") Plant Family:
+			select#plantfamily.form-control(type="select" placeholder="Select plant family" name="family" required=true)
+				- plantfamilies.sort(function(a, b) {let familyA = a.name.toUpperCase(); let familyB = b.name.toUpperCase(); return (familyA < familyB) ? -1 : (familyA > familyB) ? 1 : 0});
+				for family in plantfamilies
+					if plant
+						option(
+							value=family._id
+							selected=(
+								family._id.toString()==plant.family._id
+								|| family._id.toString()==plant.family
+							) ? "selected" : false
+						) #{family.name}
+					else
+						option(value=family._id) #{family.name}
+		div.form-group
+			label(for="description") Description:
+			textarea#description.form-control(type="textarea", placeholder="Description" name="description" required=true) #{undefined===plant ? "" : plant.description}
+		div.form-group
+			label(for="indoors") Suitable for indoors:
+			input.checkbox-input(type="checkbox", name="indoors", checked=(undefined===plant ? false : plant.indoors))
+		div.form-group
+			label(for="amount") Amount:
+			input(type="number", name="amount", required=true min=0 value=(undefined===plant ? 0 : plant.amount))
+		div.form-group 
+			label(for="image")
+			input.upload(type="file" name="image" accept="image/*" required=(undefined==plant ? true : false))
+		
+		button.btn.btn-primary(type='submit') Submit
+
+	if errors 
+		ul 
+			for error in errors 
+				li!= error.msg

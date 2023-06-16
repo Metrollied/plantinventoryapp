@@ -1,0 +1,14 @@
+extends layout
+
+block content 
+	
+
+
+	
+	div#deleteForm
+		form(method="POST" action="")
+			h1 Delete #{plant.name}
+			p Do you really want to delete this plant?
+			input(type="hidden", name="plantid", required=true, value=plant._id)
+		
+			button(type="submit") Delete

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1 Plant Families
+
+	div#listArea
+	 
+		each family in plantfamily_list
+				a#plantbox(href=family.url)
+					img(src=family.imageurl)
+					p #{family.name}
+		
+		else
+			li There are no plant families.
+	
+	a.addNewButton(href="/plantfamilies/create") Add Plant Family
